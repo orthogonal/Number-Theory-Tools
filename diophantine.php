@@ -22,14 +22,14 @@
 		$r = ($a % $b);
 		$div = intval($a / $b);
 		array_push($coefficients, $div);
-		echo "$a = $div * $b + $r";
+		echo "$a = $div * $b + $r<br />";
 		$a = $b;
 		$b = $r;
 		array_push($results, $r);
 		if ($r != 0)
 			$gcd = $r;
 	}
-	
+	echo "<br />";
 	if ($z % $gcd != 0)
 		echo "There is no solution - the gcd of $x and $y does not divide $z";
 	else{
@@ -52,6 +52,9 @@
 			
 			echo ($results[$i] / $gcd) . "= $coef_x2 * $x + $coef_y2 * $y <br />";
 		}
+		
+		echo "<br />";
+		echo ($z * $gcd) . " = (" . ($coef_x1 * $z) . " + $coef_x2 * k) * " . ($x * $gcd) . " + (" . ($coef_y1 * $z) . " + $coef_y2 * k) * " . ($y * $gcd);
 	}
 	
 ?>
