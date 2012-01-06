@@ -105,6 +105,39 @@ $('document').ready(function() {
 			}
 		}
 	});
+	
+	$('#lincong').submit(function(evt) {
+		$('#lincong_answer').html("");
+		var stuff = $('#lincong').serialize();
+		if ($('#lincong').valid()){
+			$.post("lincong.php", stuff, function(data){
+				$('#lincong_answer').html(data);
+			})
+		}
+		evt.preventDefault();
+	});
+	
+	$('#lincong').validate({
+		rules: {
+			lincong_a: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			lincong_c: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			lincong_m: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			}
+		}
+	});
+
+	
 });
 </script>
 </head>
@@ -131,6 +164,13 @@ $('document').ready(function() {
 	<form method="post" action="eratosthenes.php" id="eratos">
 		<input type="text" name="eratos_x" size="10" maxlength="10" id="eratos_x" />
 		<input type="submit" value="Eratosthenicize!" />
+	</form>
+	
+	<form method="post" action="linearcongruence.php" id="lincong">
+		<input type="text" name="lincong_a" size="10" maxlength="10" id="lincong_a" />x <font face="Symbol"> &#186; </font> 
+		<input type="text" name="lincong_c" size="10" maxlength="10" id="lincong_c" /> mod 
+		<input type="text" name="lincong_m" size="10" maxlength="10" id="lincong_m" />
+		<input type="submit" value="Solve Congruence!" />
 	</form>
 </div>
 <div id='answers'>
