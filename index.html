@@ -5,23 +5,27 @@
 <script src="http://www.lathamcity.com/_js/jquery-1.7.js"></script>
 <script>
 $('document').ready(function() {
-	$('#diophantine').submit(function(evt) {
+	$('#gcd').submit(function(evt) {
 		evt.preventDefault();
-		var stuff = $('#diophantine').serialize();
-		$.post("diophantine.php", stuff, function(data){
-			$('#diop_answer').text(data);
+		var stuff = $('#gcd').serialize();
+		$.post("gcd.php", stuff, function(data){
+			$('#gcd_answer').text(data);
 		})
 	});
 });
 </script>
 </head>
 <body>
-<form method="post" action="diophantine.php" id="diophantine">
-	<input type="text" name="diop_x" size="10" maxlength="50" id="diop_x"/>
-	<input type="text" name="diop_y" size="10" maxlength="50" id="diop_y"/>
-	<input type="submit" value="Solve" />
-</form>
-<div id="diop_answer">
+<div id='functions'>
+	<form method="post" action="gcd.php" id="gcd">
+		<input type="text" name="gcd_x" size="10" maxlength="50" id="gcd_x"/>
+		<input type="text" name="gcd_y" size="10" maxlength="50" id="gcd_y"/>
+		<input type="submit" value="Solve" />
+	</form>
+</div>
+<div id='answers'>
+	<div id="gcd_answer">
+	</div>
 </div>
 </body>
 </html>

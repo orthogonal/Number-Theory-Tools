@@ -1,6 +1,6 @@
-<?php //diophantine.php
-	$x = $_POST['diop_x'];
-	$y = $_POST['diop_y'];
+<?php //gcd.php
+	$x = $_POST['gcd_x'];
+	$y = $_POST['gcd_y'];
 	
 	//We want y to be greater than x
 	if ($y < $x){
