@@ -3,6 +3,8 @@
 	$stop = sqrt($x);
 	$options = array();
 	
+	set_time_limit(240);
+	
 	for ($i = 2; $i <= $x; $i++)
 		array_push($options, $i);
 
