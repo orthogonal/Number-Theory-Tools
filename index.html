@@ -2,15 +2,36 @@
 <html>
 <head>
 <title>Number Theory</title>
+<link rel="stylesheet" type="text/css" href="mathstyles.css" />
 <script src="http://www.lathamcity.com/_js/jquery-1.7.js"></script>
+<script src="http://www.lathamcity.com/_js/jquery.validate.min.js"></script>
 <script>
 $('document').ready(function() {
+	$('#gcd_answer').html("");
 	$('#gcd').submit(function(evt) {
-		evt.preventDefault();
 		var stuff = $('#gcd').serialize();
-		$.post("gcd.php", stuff, function(data){
-			$('#gcd_answer').text(data);
-		})
+		if ($('#gcd').valid()){
+			$.post("gcd.php", stuff, function(data){
+				$('#gcd_answer').text(data);
+			})
+		}
+		else alert($('#gcd label.error').text());
+		evt.preventDefault();
+	});
+	
+	$('#gcd').validate({
+		rules: {
+			gcd_x: {
+				required: true,
+				digits: true,
+				min: 1
+			},
+			gcd_y: {
+				required: true,
+				digits: true,
+				min: 1
+			}
+		}
 	});
 });
 </script>

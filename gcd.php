@@ -24,6 +24,6 @@
 			$gcd = $r;
 	}
 	
-	echo "gcd: $gcd";
+	echo "The greatest common divisor of $y and $x is $gcd";
 	
 ?>
