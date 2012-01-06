@@ -15,7 +15,6 @@ $('document').ready(function() {
 				$('#gcd_answer').html(data);
 			})
 		}
-		else alert($('#gcd label.error').text());
 		evt.preventDefault();
 	});
 	
@@ -37,13 +36,32 @@ $('document').ready(function() {
 	$('#diophantine').submit(function(evt) {
 		$('#diop_answer').html("");
 		var stuff = $('#diophantine').serialize();
-		if (true){
+		if ($('#diophantine').valid()){
 			$.post("diophantine.php", stuff, function(data){
 				$('#diop_answer').html(data);
 			})
 		}
-		else alert($('#gcd label.error').text());
 		evt.preventDefault();
+	});
+	
+	$('#diophantine').validate({
+		rules: {
+			diop_x: {
+				required: true,
+				digits: true,
+				min: 1
+			},
+			diop_y: {
+				required: true,
+				digits: true,
+				min: 1
+			},
+			diop_z: {
+				required: true,
+				digits: true,
+				min: 1
+			}
+		}
 	});
 });
 </script>
