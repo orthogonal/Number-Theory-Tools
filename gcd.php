@@ -18,12 +18,13 @@
 	while ($r != 0){
 		$r = ($a % $b);
 		$div = intval($a / $b);
+		echo "$a = $div * $b + $r<br />";
 		$a = $b;
 		$b = $r;
 		if ($r != 0)
 			$gcd = $r;
 	}
 	
-	echo "The greatest common divisor of $y and $x is $gcd";
+	echo "<br />The greatest common divisor of $y and $x is $gcd";
 	
 ?>

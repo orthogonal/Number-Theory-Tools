@@ -7,12 +7,12 @@
 <script src="http://www.lathamcity.com/_js/jquery.validate.min.js"></script>
 <script>
 $('document').ready(function() {
-	$('#gcd_answer').html("");
 	$('#gcd').submit(function(evt) {
+		$('#gcd_answer').html("");
 		var stuff = $('#gcd').serialize();
 		if ($('#gcd').valid()){
 			$.post("gcd.php", stuff, function(data){
-				$('#gcd_answer').text(data);
+				$('#gcd_answer').html(data);
 			})
 		}
 		else alert($('#gcd label.error').text());
@@ -33,6 +33,18 @@ $('document').ready(function() {
 			}
 		}
 	});
+	
+	$('#diophantine').submit(function(evt) {
+		$('#diop_answer').html("");
+		var stuff = $('#diophantine').serialize();
+		if (true){
+			$.post("diophantine.php", stuff, function(data){
+				$('#diop_answer').html(data);
+			})
+		}
+		else alert($('#gcd label.error').text());
+		evt.preventDefault();
+	});
 });
 </script>
 </head>
@@ -41,11 +53,20 @@ $('document').ready(function() {
 	<form method="post" action="gcd.php" id="gcd">
 		<input type="text" name="gcd_x" size="10" maxlength="50" id="gcd_x"/>
 		<input type="text" name="gcd_y" size="10" maxlength="50" id="gcd_y"/>
-		<input type="submit" value="Solve" />
+		<input type="submit" value="GCD" />
+	</form>
+	
+	<form method="post" action="diophantine.php" id="diophantine">
+		a<input type="text" name="diop_x" size="10" maxlength="50" id="diop_x"/>
+		+ b<input type="text" name="diop_y" size="10" maxlength="50" id="diop_y"/>
+		= <input type="text" name="diop_z" size="10" maxlength="50" id="diop_z" />
+		<input type="submit" value="Diopicize" />
 	</form>
 </div>
 <div id='answers'>
 	<div id="gcd_answer">
+	</div>
+	<div id="diop_answer">
 	</div>
 </div>
 </body>
