@@ -110,7 +110,7 @@ $('document').ready(function() {
 		$('#lincong_answer').html("");
 		var stuff = $('#lincong').serialize();
 		if ($('#lincong').valid()){
-			$.post("lincong.php", stuff, function(data){
+			$.post("linearcongruence.php", stuff, function(data){
 				$('#lincong_answer').html(data);
 			})
 		}
@@ -181,6 +181,8 @@ $('document').ready(function() {
 	<div id="pfac_answer">
 	</div>
 	<div id="eratos_answer">
+	</div>
+	<div id="lincong_answer">
 	</div>
 </div>
 </body>
