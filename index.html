@@ -23,12 +23,12 @@ $('document').ready(function() {
 			gcd_x: {
 				required: true,
 				digits: true,
-				min: 1
+				range: [1, 2147483646]
 			},
 			gcd_y: {
 				required: true,
 				digits: true,
-				min: 1
+				range: [1, 2147483646]
 			}
 		}
 	});
@@ -49,17 +49,38 @@ $('document').ready(function() {
 			diop_x: {
 				required: true,
 				digits: true,
-				min: 1
+				range: [1, 2147483646]
 			},
 			diop_y: {
 				required: true,
 				digits: true,
-				min: 1
+				range: [1, 2147483646]
 			},
 			diop_z: {
 				required: true,
 				digits: true,
-				min: 1
+				range: [1, 2147483646]
+			}
+		}
+	});
+
+	$('#pfac').submit(function(evt) {
+		$('#pfac_answer').html("");
+		var stuff = $('#pfac').serialize();
+		if ($('#pfac').valid()){
+			$.post("pfac.php", stuff, function(data){
+				$('#pfac_answer').html(data);
+			})
+		}
+		evt.preventDefault();
+	});
+	
+	$('#pfac').validate({
+		rules: {
+			pfac_x: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
 			}
 		}
 	});
@@ -69,22 +90,29 @@ $('document').ready(function() {
 <body>
 <div id='functions'>
 	<form method="post" action="gcd.php" id="gcd">
-		<input type="text" name="gcd_x" size="10" maxlength="50" id="gcd_x"/>
-		<input type="text" name="gcd_y" size="10" maxlength="50" id="gcd_y"/>
+		<input type="text" name="gcd_x" size="10" maxlength="10" id="gcd_x"/>
+		<input type="text" name="gcd_y" size="10" maxlength="10" id="gcd_y"/>
 		<input type="submit" value="GCD" />
 	</form>
 	
 	<form method="post" action="diophantine.php" id="diophantine">
-		a<input type="text" name="diop_x" size="10" maxlength="50" id="diop_x"/>
-		+ b<input type="text" name="diop_y" size="10" maxlength="50" id="diop_y"/>
-		= <input type="text" name="diop_z" size="10" maxlength="50" id="diop_z" />
+		a<input type="text" name="diop_x" size="10" maxlength="10" id="diop_x"/>
+		+ b<input type="text" name="diop_y" size="10" maxlength="10" id="diop_y"/>
+		= <input type="text" name="diop_z" size="10" maxlength="10" id="diop_z" />
 		<input type="submit" value="Diopicize" />
+	</form>
+	
+	<form method="post" action="pfac.php" id="pfac">
+		<input type="text" name="pfac_x" size="10" maxlength="10" id="pfac_x" />
+		<input type="submit" value="Prime Factorize" />
 	</form>
 </div>
 <div id='answers'>
 	<div id="gcd_answer">
 	</div>
 	<div id="diop_answer">
+	</div>
+	<div id="pfac_answer">
 	</div>
 </div>
 </body>
