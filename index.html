@@ -84,6 +84,27 @@ $('document').ready(function() {
 			}
 		}
 	});
+	
+	$('#eratos').submit(function(evt) {
+		$('#eratos_answer').html("");
+		var stuff = $('#eratos').serialize();
+		if ($('#eratos').valid()){
+			$.post("eratosthenes.php", stuff, function(data){
+				$('#eratos_answer').html(data);
+			})
+		}
+		evt.preventDefault();
+	});
+	
+	$('#eratos').validate({
+		rules: {
+			eratos_x: {
+				required: true,
+				digits: true,
+				range: [1, 2147573646]
+			}
+		}
+	});
 });
 </script>
 </head>
@@ -92,19 +113,24 @@ $('document').ready(function() {
 	<form method="post" action="gcd.php" id="gcd">
 		<input type="text" name="gcd_x" size="10" maxlength="10" id="gcd_x"/>
 		<input type="text" name="gcd_y" size="10" maxlength="10" id="gcd_y"/>
-		<input type="submit" value="GCD" />
+		<input type="submit" value="Greatest Common Divisicize!" />
 	</form>
 	
 	<form method="post" action="diophantine.php" id="diophantine">
 		a<input type="text" name="diop_x" size="10" maxlength="10" id="diop_x"/>
 		+ b<input type="text" name="diop_y" size="10" maxlength="10" id="diop_y"/>
 		= <input type="text" name="diop_z" size="10" maxlength="10" id="diop_z" />
-		<input type="submit" value="Diopicize" />
+		<input type="submit" value="Diopicize!" />
 	</form>
 	
 	<form method="post" action="pfac.php" id="pfac">
 		<input type="text" name="pfac_x" size="10" maxlength="10" id="pfac_x" />
-		<input type="submit" value="Prime Factorize" />
+		<input type="submit" value="Prime Factorize!" />
+	</form>
+	
+	<form method="post" action="eratosthenes.php" id="eratos">
+		<input type="text" name="eratos_x" size="10" maxlength="10" id="eratos_x" />
+		<input type="submit" value="Eratosthenicize!" />
 	</form>
 </div>
 <div id='answers'>
@@ -113,6 +139,8 @@ $('document').ready(function() {
 	<div id="diop_answer">
 	</div>
 	<div id="pfac_answer">
+	</div>
+	<div id="eratos_answer">
 	</div>
 </div>
 </body>
