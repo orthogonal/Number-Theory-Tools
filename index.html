@@ -12,9 +12,10 @@ $('document').ready(function() {
 		var stuff = $('#gcd').serialize();
 		if ($('#gcd').valid()){
 			$.post("gcd.php", stuff, function(data){
-				$('#gcd_answer').html(data);
+				$('#answer').html(data);
 			})
 		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
 		evt.preventDefault();
 	});
 	
@@ -30,6 +31,19 @@ $('document').ready(function() {
 				digits: true,
 				range: [1, 2147483646]
 			}
+		},
+		
+		messages: {
+			gcd_x: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			gcd_y: {
+				required: "",
+				digits: "",
+				range: ""
+			}
 		}
 	});
 	
@@ -38,9 +52,10 @@ $('document').ready(function() {
 		var stuff = $('#diophantine').serialize();
 		if ($('#diophantine').valid()){
 			$.post("diophantine.php", stuff, function(data){
-				$('#diop_answer').html(data);
+				$('#answer').html(data);
 			})
 		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
 		evt.preventDefault();
 	});
 	
@@ -61,6 +76,24 @@ $('document').ready(function() {
 				digits: true,
 				range: [1, 2147483646]
 			}
+		},
+		
+		messages: {
+			diop_x: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			diop_y: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			diop_z: {
+				required: "",
+				digits: "",
+				range: ""
+			}
 		}
 	});
 
@@ -69,9 +102,10 @@ $('document').ready(function() {
 		var stuff = $('#pfac').serialize();
 		if ($('#pfac').valid()){
 			$.post("pfac.php", stuff, function(data){
-				$('#pfac_answer').html(data);
+				$('#answer').html(data);
 			})
 		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
 		evt.preventDefault();
 	});
 	
@@ -82,6 +116,14 @@ $('document').ready(function() {
 				digits: true,
 				range: [1, 2147483646]
 			}
+		},
+		
+		messages: {
+			pfac_x: {
+				required: "",
+				digits: "",
+				range: ""
+			}
 		}
 	});
 	
@@ -90,9 +132,10 @@ $('document').ready(function() {
 		var stuff = $('#eratos').serialize();
 		if ($('#eratos').valid()){
 			$.post("eratosthenes.php", stuff, function(data){
-				$('#eratos_answer').html(data);
+				$('#answer').html(data);
 			})
 		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
 		evt.preventDefault();
 	});
 	
@@ -103,6 +146,14 @@ $('document').ready(function() {
 				digits: true,
 				range: [1, 2147573646]
 			}
+		},
+		
+		messages: {
+			eratos_x: {
+				required: "",
+				digits: "",
+				range: ""
+			}
 		}
 	});
 	
@@ -111,9 +162,10 @@ $('document').ready(function() {
 		var stuff = $('#lincong').serialize();
 		if ($('#lincong').valid()){
 			$.post("linearcongruence.php", stuff, function(data){
-				$('#lincong_answer').html(data);
+				$('#answer').html(data);
 			})
 		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
 		evt.preventDefault();
 	});
 	
@@ -134,55 +186,80 @@ $('document').ready(function() {
 				digits: true,
 				range: [1, 2147483646]
 			}
+		},
+		
+		messages: {
+			lincong_a: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			lincong_c: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			lincong_m: {
+				required: "",
+				digits: "",
+				range: ""
+			}
 		}
-	});
 
-	
+	});
 });
 </script>
 </head>
 <body>
 <div id='functions'>
-	<form method="post" action="gcd.php" id="gcd">
-		<input type="text" name="gcd_x" size="10" maxlength="10" id="gcd_x"/>
-		<input type="text" name="gcd_y" size="10" maxlength="10" id="gcd_y"/>
-		<input type="submit" value="Greatest Common Divisicize!" />
-	</form>
 	
-	<form method="post" action="diophantine.php" id="diophantine">
-		a<input type="text" name="diop_x" size="10" maxlength="10" id="diop_x"/>
-		+ b<input type="text" name="diop_y" size="10" maxlength="10" id="diop_y"/>
-		= <input type="text" name="diop_z" size="10" maxlength="10" id="diop_z" />
-		<input type="submit" value="Diopicize!" />
-	</form>
+	<div class="problem">
+		<div class="title">Greatest Common Denominator</div>
+		<form method="post" action="gcd.php" id="gcd">
+			<input type="text" name="gcd_x" size="10" maxlength="10" id="gcd_x"/>
+			<input type="text" name="gcd_y" size="10" maxlength="10" id="gcd_y"/>
+			<input type="submit" value="Greatest Common Divisicize!" />
+		</form>
+	</div>
 	
-	<form method="post" action="pfac.php" id="pfac">
-		<input type="text" name="pfac_x" size="10" maxlength="10" id="pfac_x" />
-		<input type="submit" value="Prime Factorize!" />
-	</form>
+	<div class="problem">
+		<div class="title">Diophantine Equation</div>
+		<form method="post" action="diophantine.php" id="diophantine">
+			a<input type="text" name="diop_x" size="10" maxlength="10" id="diop_x"/>
+			+ b<input type="text" name="diop_y" size="10" maxlength="10" id="diop_y"/>
+			= <input type="text" name="diop_z" size="10" maxlength="10" id="diop_z" />
+			<input type="submit" value="Diopicize!" />
+		</form>
+	</div>
 	
-	<form method="post" action="eratosthenes.php" id="eratos">
-		<input type="text" name="eratos_x" size="10" maxlength="10" id="eratos_x" />
-		<input type="submit" value="Eratosthenicize!" />
-	</form>
+	<div class="problem">
+		<div class="title">Prime Factorization</div>
+		<form method="post" action="pfac.php" id="pfac">
+			<input type="text" name="pfac_x" size="10" maxlength="10" id="pfac_x" />
+			<input type="submit" value="Prime Factorize!" />
+		</form>
+	</div>
 	
-	<form method="post" action="linearcongruence.php" id="lincong">
-		<input type="text" name="lincong_a" size="10" maxlength="10" id="lincong_a" />x <font face="Symbol"> &#186; </font> 
-		<input type="text" name="lincong_c" size="10" maxlength="10" id="lincong_c" /> mod 
-		<input type="text" name="lincong_m" size="10" maxlength="10" id="lincong_m" />
-		<input type="submit" value="Solve Congruence!" />
-	</form>
+	<div class="problem">
+		<div class="title">Sieve of Eratosthenes</div>
+		<form method="post" action="eratosthenes.php" id="eratos">
+			<input type="text" name="eratos_x" size="10" maxlength="10" id="eratos_x" />
+			<input type="submit" value="Eratosthenicize!" />
+		</form>
+	</div>
+	
+	<div class="problem">
+		<div class="title">Linear Congruence</div>
+		<form method="post" action="linearcongruence.php" id="lincong">
+			<input type="text" name="lincong_a" size="10" maxlength="10" id="lincong_a" />x <font face="Symbol"> &#186; </font> 
+			<input type="text" name="lincong_c" size="10" maxlength="10" id="lincong_c" /> mod 
+			<input type="text" name="lincong_m" size="10" maxlength="10" id="lincong_m" />
+			<input type="submit" value="Solve Congruence!" />
+		</form>
+	</div>
 </div>
 <div id='answers'>
-	<div id="gcd_answer">
-	</div>
-	<div id="diop_answer">
-	</div>
-	<div id="pfac_answer">
-	</div>
-	<div id="eratos_answer">
-	</div>
-	<div id="lincong_answer">
+	<div id="answer">
 	</div>
 </div>
 </body>
