@@ -277,6 +277,56 @@ $('document').ready(function() {
 			}
 		}
 	});
+	
+	$('#successive').submit(function(evt) {
+		$('#answer').html("");
+		var stuff = $('#successive').serialize();
+		if ($('#successive').valid()){
+			$.post("successive.php", stuff, function(data){
+				$('#answer').html(data);
+			})
+		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
+		evt.preventDefault();
+	});
+	
+	$('#successive').validate({
+		rules: {
+			square_a: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			square_k: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			square_m: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			}
+		},
+		
+		messages: {
+			square_a: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			square_k: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			square_m: {
+				required: "",
+				digits: "",
+				range: ""
+			}
+		}
+	});
 });
 </script>
 </head>
@@ -337,11 +387,21 @@ $('document').ready(function() {
 	</div>
 	
 	<div class="problem">
-		<div class="title">Legendre Symbol</div>
+		<div class="title">Quadratic Residues</div>
 		<form method="post" action="legendre.php" id="legendre">
 			Is <input type="text" name="legendre_x" size="10" maxlength="10" id="legendre_x" />
 			 a quadratic residue mod <input type="text" name="legendre_p" size="10" maxlength="10" id="legendre_p" />?
 			<input type="submit" value="Legendricize!" />
+		</form>
+	</div>
+	
+	<div class="problem">
+		<div class="title">Successive Squaring</div>
+		<form method="post" action="successive.php" id="successive">
+			<input type="text" name="square_a" size="10" maxlength="10" id="square_a" />
+			 ^ <input type="text" name="square_k" size="10" maxlength="10" id="square_k" />
+			  mod <input type="text" name="square_m" size="10" maxlength="10" id="square_m" />
+			<input type="submit" value="Successively Square!" />
 		</form>
 	</div>
 </div>
