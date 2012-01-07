@@ -6,25 +6,26 @@
 <script src="http://www.lathamcity.com/_js/jquery-1.7.js"></script>
 <script src="http://www.lathamcity.com/_js/jquery.validate.min.js"></script>
 <script>
+//Every submit-validate combination follows the same general setup as the GCD one.
 $('document').ready(function() {
 	$('#gcd').submit(function(evt) {
-		$('#answer').html("");
+		$('#answer').html("");	//Clear the right side of the screen for a new answer
 		var stuff = $('#gcd').serialize();
-		if ($('#gcd').valid()){
+		if ($('#gcd').valid()){	//The Validator plugin checks if the form is valid based on the rules applied below
 			$.post("gcd.php", stuff, function(data){
-				$('#answer').html(data);
-			})
+				$('#answer').html(data);	//If it is, there's an AJAX call to the corresponding PHP script, and the output is printed.
+			})								//If it isn't, the alert shown below appears.
 		}
 		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
 		evt.preventDefault();
 	});
 	
-	$('#gcd').validate({
-		rules: {
+	$('#gcd').validate({	//Part of the validator plugin.  This defines the behavior of validation.
+		rules: {			//The requirements each entry must fulfill in order for the form to be valid.  Usually all the same.
 			gcd_x: {
-				required: true,
-				digits: true,
-				range: [1, 2147483646]
+				required: true,			//There must be an entry,
+				digits: true,			//It must be a positive integer, and
+				range: [1, 2147483646]	//It must not be 0 or an invalid PHP integer (one that overflows and turns into a floating-point number)
 			},
 			gcd_y: {
 				required: true,
@@ -33,8 +34,8 @@ $('document').ready(function() {
 			}
 		},
 		
-		messages: {
-			gcd_x: {
+		messages: {			//These define the messages that are shown in new labels when the corresponding entry is invalid.
+			gcd_x: {		//They are all blank because a generic error message appears in an alert instead.
 				required: "",
 				digits: "",
 				range: ""
@@ -241,9 +242,9 @@ $('document').ready(function() {
 </head>
 <body>
 <div id='functions'>
-	
+	<!--Each block of code below defines one possible problem for a PHP script to solve -->
 	<div class="problem">
-		<div class="title">Greatest Common Denominator</div>
+		<div class="title">Greatest Common Divisor</div>
 		<form method="post" action="gcd.php" id="gcd">
 			<input type="text" name="gcd_x" size="10" maxlength="10" id="gcd_x"/>
 			<input type="text" name="gcd_y" size="10" maxlength="10" id="gcd_y"/>
@@ -280,7 +281,7 @@ $('document').ready(function() {
 	<div class="problem">
 		<div class="title">Linear Congruence</div>
 		<form method="post" action="linearcongruence.php" id="lincong">
-			<input type="text" name="lincong_a" size="10" maxlength="10" id="lincong_a" />x <font face="Symbol"> &#186; </font> 
+			<input type="text" name="lincong_a" size="10" maxlength="10" id="lincong_a" />x <font face="Symbol"> &#186; </font> <!-- &#186; is congruence -->
 			<input type="text" name="lincong_c" size="10" maxlength="10" id="lincong_c" /> mod 
 			<input type="text" name="lincong_m" size="10" maxlength="10" id="lincong_m" />
 			<input type="submit" value="Solve Congruence!" />
@@ -291,10 +292,11 @@ $('document').ready(function() {
 		<div class="title">Euler's Phi Function</div>
 		<form method="post" action="phifunction.php" id="phifunction">
 			<input type="text" name="phi_x" size="10" maxlength="10" id="phi_x" />
-			<input type="submit" value="&#981;icize!" />
+			<input type="submit" value="&#981;icize!" /> <!-- &#981; is phi -->
 		</form>
 	</div>
 </div>
+<!-- Answers is the entire right side of the screen -->
 <div id='answers'>
 	<div id="answer">
 	</div>
