@@ -42,20 +42,20 @@
 		if ($i < (count($kfactors) - 1)) echo " * ";
 	}
 	
-	echo "<br />";
+	echo "<br /><br />";
 	$last = 1;
 	$i = 1;
 	$stop = $kfactors[0];
 	$j = count($kfactors) - 1;
 	while ($i <= $stop){
 		if ($i != 1){
-			echo "$a<sup>$i</sup> = ";
-			echo "$a<sup> . " .($i / 2) . " * 2</sup> = $last<sup>2</sup> mod $m";
-			echo " = " . pow($last, 2) . " mod $m = " . (pow($last, 2) % $m);
-			$last = (pow($last, 2) % $m);
+			echo "$a<sup>$i</sup> <font face='Symbol'> &#186; </font> ";
+			echo "$a<sup>" .($i / 2) . " * 2</sup> mod $m <font face='Symbol'> &#186; </font> $last<sup>2</sup> mod $m";
+			echo " <font face='Symbol'> &#186; </font> " . pow($last, 2) . " mod $m <font face='Symbol'> &#186; </font> " . bcpowmod($last, 2, $m);
+			$last = bcpowmod($last, 2, $m);
 		}
 		else{
-			echo "$a<sup>1</sup> mod $m = " . ($a % $m);
+			echo "$a<sup>1</sup> mod $m <font face='Symbol'> &#186; </font> " . ($a % $m);
 			$last = $a % $m;
 		}
 		if ($i == $kfactors[$j]){
@@ -67,12 +67,12 @@
 	}		
 	
 	$result = 1;
-	echo "<br />$a<sup>$k</sup> = ";
+	echo "<br />$a<sup>$k</sup> <font face='Symbol'> &#186; </font> ";
 	for ($i = 0; $i < count($kfactors); $i++){
 		echo "$kfactors[$i]";
 		$result *= $kfactors[$i];
 		if ($i < (count($kfactors) - 1)) echo " * ";
 	}
 	echo " mod $m";
-	echo "<br />$a<sup>$k</sup> = " . ($result % $m);
+	echo "<br />$a<sup>$k</sup> mod $m <font face='Symbol'> &#186; </font> " . ($result % $m);
 ?>
