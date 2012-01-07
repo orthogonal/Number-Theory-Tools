@@ -237,6 +237,46 @@ $('document').ready(function() {
 			}
 		}
 	});
+	
+	$('#legendre').submit(function(evt) {
+		$('#answer').html("");
+		var stuff = $('#legendre').serialize();
+		if ($('#legendre').valid()){
+			$.post("legendre.php", stuff, function(data){
+				$('#answer').html(data);
+			})
+		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
+		evt.preventDefault();
+	});
+	
+	$('#legendre').validate({
+		rules: {
+			legendre_x: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			legendre_p: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			}
+		},
+		
+		messages: {
+			legendre_x: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			legendre_p: {
+				required: "",
+				digits: "",
+				range: ""
+			}
+		}
+	});
 });
 </script>
 </head>
@@ -293,6 +333,15 @@ $('document').ready(function() {
 		<form method="post" action="phifunction.php" id="phifunction">
 			<input type="text" name="phi_x" size="10" maxlength="10" id="phi_x" />
 			<input type="submit" value="&#981;icize!" /> <!-- &#981; is phi -->
+		</form>
+	</div>
+	
+	<div class="problem">
+		<div class="title">Legendre Symbol</div>
+		<form method="post" action="legendre.php" id="legendre">
+			Is <input type="text" name="legendre_x" size="10" maxlength="10" id="legendre_x" />
+			 a quadratic residue mod <input type="text" name="legendre_p" size="10" maxlength="10" id="legendre_p" />?
+			<input type="submit" value="Legendricize!" />
 		</form>
 	</div>
 </div>

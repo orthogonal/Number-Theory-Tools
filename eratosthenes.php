@@ -8,7 +8,7 @@
 	for ($i = 2; $i <= $x; $i++)	//Add every number between 2 and the maximum number to the array.
 		array_push($options, $i);	//Each index holds itself plus 2, so $options[1] = 3, etc.
 
-	for ($i = 2; $i < $stop; $i++)	
+	for ($i = 2; $i <= $stop; $i++)	
 		for ($j = $i; $j < $x; $j++)
 			if ($options[$j] % $i == 0)
 				$options[$j] = 1;		//Change all the numbers that have prime factors to 1.
