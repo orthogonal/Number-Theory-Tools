@@ -44,6 +44,6 @@
 	}
 	
 	//If the flag never fell, then there were no factors, so it was prime.
-	if (!$flag) echo "<br />$x is prime.  &#981;(x) = " . ($x - 1) . ".";
-	else echo "<br />$str1<br />$str2<br />$str3<br />&#981;(x) = $phi";
+	if (!$flag) echo "<br />$x is prime.  &#981;($x) = " . ($x - 1) . ".";
+	else echo "<br />$str1<br />$str2<br />$str3<br />&#981;($x) = $phi";
 ?>

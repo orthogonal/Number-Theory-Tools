@@ -71,6 +71,7 @@
 	for ($i = 0; $i < count($kfactors); $i++){
 		echo "$kfactors[$i]";
 		$result *= $kfactors[$i];
+		$result %= $m;
 		if ($i < (count($kfactors) - 1)) echo " * ";
 	}
 	echo " mod $m";
