@@ -148,9 +148,15 @@
 				echo ($results[$i] / $gcd) . "= $coef_x2 * $x + $coef_y2 * $y <br />";
 			}
 			echo ($z * $gcd) . " = (" . ($coef_x1 * $z) . " + $coef_x2 * k) * " . ($x * $gcd) . " + (" . ($coef_y1 * $z) . " + $coef_y2 * k) * " . ($y * $gcd) . "<br />";
-			echo ($z * $gcd) . " = (" . ($coef_x1 * $z) . " + $coef_x2 * k) * " . ($x * $gcd) . " - (" . ($coef_y1 * $z * -1) . " + $coef_y2 * k) * " . ($y * $gcd);
+			$u = $coef_x1 * $gcd;
+			$v = $coef_y1 * $gcd;
+			while ($u <= 0){
+				$u += $coef_x2;
+				$v += $coef_y2;
+			}
+			echo ($z * $gcd) . " = ($u) * " . ($x * $gcd) . " - (" . ($v * -1) . ") * " . ($y * $gcd);
 			echo "<br />";
-			return array($coef_x1 * $z, $coef_y1 * $z * -1);
+			return array($u, $v * -1);
 		}
 	}
 
