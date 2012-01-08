@@ -327,6 +327,56 @@ $('document').ready(function() {
 			}
 		}
 	});
+	
+	$('#excong').submit(function(evt) {
+		$('#answer').html("");
+		var stuff = $('#excong').serialize();
+		if ($('#excong').valid()){
+			$.post("excong.php", stuff, function(data){
+				$('#answer').html(data);
+			})
+		}
+		else alert("There is an error in your input.  All numbers must be integers between 1 and 2147483646");
+		evt.preventDefault();
+	});
+	
+	$('#excong').validate({
+		rules: {
+			excong_k: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			excong_b: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			},
+			excong_m: {
+				required: true,
+				digits: true,
+				range: [1, 2147483646]
+			}
+		},
+		
+		messages: {
+			excong_k: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			excong_b: {
+				required: "",
+				digits: "",
+				range: ""
+			},
+			excong_m: {
+				required: "",
+				digits: "",
+				range: ""
+			}
+		}
+	});
 });
 </script>
 </head>
@@ -402,6 +452,16 @@ $('document').ready(function() {
 			 ^ <input type="text" name="square_k" size="10" maxlength="10" id="square_k" />
 			  mod <input type="text" name="square_m" size="10" maxlength="10" id="square_m" />
 			<input type="submit" value="Successively Square!" />
+		</form>
+	</div>
+	
+	<div class="problem">
+		<div class="title">Solving Exponential Congruences</div>
+		<form method="post" action="excong.php" id="excong">
+			x ^ <input type="text" name="excong_k" size="10" maxlength="10" id="excong_k" />
+			<font face="Symbol"> &#186; </font> <input type="text" name="excong_b" size="10" maxlength="10" id="excong_b" />
+			  mod <input type="text" name="excong_m" size="10" maxlength="10" id="excong_m" />
+			<input type="submit" value="Solve Congruence!" />
 		</form>
 	</div>
 </div>
