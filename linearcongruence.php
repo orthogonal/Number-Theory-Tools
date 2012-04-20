@@ -7,7 +7,7 @@
 	
 	//We want to find x such that ax = c mod m
 	
-	echo $a . "x <font face='Symbol'> &#186; </font> $c mod $m<br />";
+	echo $a . "x <font face='Symbol'> &#8801; </font> $c mod $m<br />";
 	//First, cast out m from a and c.
 	if ($c >= $m || $a >= $m){
 		if ($c >= $m)
@@ -15,7 +15,7 @@
 		if ($a >= $m)
 			$a = $a % $m;
 		echo "<br />Cast out $m from both sides<br />";
-		echo $a . "x <font face='Symbol'> &#186; </font> $c mod $m<br />";
+		echo $a . "x <font face='Symbol'> &#8801; </font> $c mod $m<br />";
 	}
 	
 	//If c is 0, then ax = 0 mod m, so x is just 0.
@@ -58,7 +58,7 @@
 	$m /= $gcd;
 	
 	echo "<br />Divide the entire equation (including m) by $gcd<br />";
-	echo $a . "x <font face='Symbol'> &#186; </font>  $c mod $m";
+	echo $a . "x <font face='Symbol'> &#8801; </font>  $c mod $m";
 	
 	//We want to find something to multiply ax by so that we can cast out m's to get 1.  
 	//Then we'll just have 1 = something times c mod m.
@@ -69,7 +69,7 @@
 	$c *= $i;
 	$a *= $i;
 	echo "<br />Multiply both sides by $i.<br />";
-	echo $a . "x <font face='Symbol'> &#186; </font> $c mod $m<br />";
+	echo $a . "x <font face='Symbol'> &#8801; </font> $c mod $m<br />";
 	
 	//Cast out m from all sides to get x = n mod m.
 	if ($c >= $m || $a >= $m){
@@ -78,7 +78,7 @@
 		if ($a >= $m)
 			$a = $a % $m;
 		echo "<br />Cast out $m from both sides<br />";
-		echo $a . "x <font face='Symbol'> &#186; </font> $c mod $m<br />";
+		echo $a . "x <font face='Symbol'> &#8801; </font> $c mod $m<br />";
 	}
 	
 	//So n is one solution.  But we want something mod the original m, so add the reduced m to n as much as possible.

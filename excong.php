@@ -15,7 +15,7 @@
 	//<font face='Symbol'> &#186; </font> is congruence
 	//&#981; is phi
 	
-	echo "x<sup>$k</sup> <font face='Symbol'> &#186; </font> $b mod $m<br /><br />";
+	echo "x<sup>$k</sup> <font face='Symbol'> &#8801; </font> $b mod $m<br /><br />";
 	echo "First, compute &#981;(m)<br />";
 	
 	//Step 1:  Compute phi(m)
@@ -78,7 +78,7 @@
 	//Step 2.  Check if gcd(k, phi) = gcd(b, phi) = 1.  
 	//The gcd method returns the gcd of two numbers.
 	if ((gcd($k, $phi) != 1) || (gcd($b, $phi) != 1))
-			exit("$gcd is not 1, so this is unsolveable.");
+			exit("The gcd is not 1, so this is unsolveable.");
 	
 	//Step 3.  Solve the diophantine equation.
 	//This part is complicated because PHP doesn't like doing modulus on negative numbers.
@@ -94,7 +94,7 @@
 	echo "<br />From Euler's Formula, we know b<sup>&#981;(m)</sup> = $b<sup>&#981;($m)</sup> = 1";
 	echo "<br />So b<sup>uk</sup> = b<sup>1+&#981;(m)v</sup> = b * (b<sup>&#981;(m)</sup>)<sup>v</sup> = b * 1<sup>v</sup> = b";
 	echo "<br />We know x<sup>k</sup> = b, and b<sup>uk</sup> = b, so x = b<sup>u</sup> = $b<sup>$u</sup>";
-	echo "<br />Therefore, we just need to solve x <font face='Symbol'> &#186; </font> $b<sup>$u</sup> mod $m";
+	echo "<br />Therefore, we just need to solve x <font face='Symbol'> &#8801; </font> $b<sup>$u</sup> mod $m";
 	echo "<br />We can find this through successive squaring.";
 	//The successive method simply outputs the result of successive squaring using the successive.php script.
 	//We want to find x = b^u mod m, which is the same as a^k mod m in the successive squaring script.
@@ -244,13 +244,13 @@
 		$j = count($kfactors) - 1;
 		while ($i <= $stop){
 			if ($i != 1){
-				echo "$a<sup>$i</sup> <font face='Symbol'> &#186; </font> ";
-				echo "$a<sup>" .($i / 2) . " * 2</sup> mod $m <font face='Symbol'> &#186; </font> $last<sup>2</sup> mod $m";
-				echo " <font face='Symbol'> &#186; </font> " . pow($last, 2) . " mod $m <font face='Symbol'> &#186; </font> " . bcpowmod($last, 2, $m);
+				echo "$a<sup>$i</sup> <font face='Symbol'> &#8801; </font> ";
+				echo "$a<sup>" .($i / 2) . " * 2</sup> mod $m <font face='Symbol'> &#8801; </font> $last<sup>2</sup> mod $m";
+				echo " <font face='Symbol'> &#8801; </font> " . pow($last, 2) . " mod $m <font face='Symbol'> &#8801; </font> " . bcpowmod($last, 2, $m);
 				$last = bcpowmod($last, 2, $m);
 			}
 			else{
-				echo "$a<sup>1</sup> mod $m <font face='Symbol'> &#186; </font> " . ($a % $m);
+				echo "$a<sup>1</sup> mod $m <font face='Symbol'> &#8801; </font> " . ($a % $m);
 				$last = $a % $m;
 			}
 			if ($i == $kfactors[$j]){
@@ -262,7 +262,7 @@
 		}		
 		
 		$result = 1;
-		echo "<br />$a<sup>$k</sup> <font face='Symbol'> &#186; </font> ";
+		echo "<br />$a<sup>$k</sup> <font face='Symbol'> &#8801; </font> ";
 		for ($i = 0; $i < count($kfactors); $i++){
 			echo "$kfactors[$i]";
 			$result *= $kfactors[$i];
@@ -270,7 +270,7 @@
 			if ($i < (count($kfactors) - 1)) echo " * ";
 		}
 		echo " mod $m";
-		echo "<br />$a<sup>$k</sup> mod $m <font face='Symbol'> &#186; </font> " . ($result % $m);
+		echo "<br />$a<sup>$k</sup> mod $m <font face='Symbol'> &#8801; </font> " . ($result % $m);
 		echo "<br />x = " . ($result % $m);
 }
 ?>

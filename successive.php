@@ -69,14 +69,14 @@
 	//Go through all the k-factors.
 	while ($i <= $stop){
 		if ($i != 1){
-			echo "$a<sup>$i</sup> <font face='Symbol'> &#186; </font> ";
-			echo "$a<sup>" .($i / 2) . " * 2</sup> mod $m <font face='Symbol'> &#186; </font> $last<sup>2</sup> mod $m";
-			echo " <font face='Symbol'> &#186; </font> " . pow($last, 2) . " mod $m <font face='Symbol'> &#186; </font> " . bcpowmod($last, 2, $m);
+			echo "$a<sup>$i</sup> <font face='Symbol'> &#8801; </font> ";
+			echo "$a<sup>" .($i / 2) . " * 2</sup> mod $m <font face='Symbol'> &#8801; </font> $last<sup>2</sup> mod $m";
+			echo " <font face='Symbol'> &#8801; </font> " . pow($last, 2) . " mod $m <font face='Symbol'> &#8801; </font> " . bcpowmod($last, 2, $m);
 			$last = bcpowmod($last, 2, $m);
 		}
 		//If i = 1, then we don't need to write all the squaring stuff because we don't square anything, we just mod the original a.
 		else{
-			echo "$a<sup>1</sup> mod $m <font face='Symbol'> &#186; </font> " . ($a % $m);
+			echo "$a<sup>1</sup> mod $m <font face='Symbol'> &#8801; </font> " . ($a % $m);
 			$last = $a % $m;
 		}
 		//We write every power of 2, since we need to square each time to get the next one, but the only ones that matter are the kfactors.
@@ -91,7 +91,7 @@
 	}		
 	
 	$result = 1;
-	echo "<br />$a<sup>$k</sup> <font face='Symbol'> &#186; </font> ";
+	echo "<br />$a<sup>$k</sup> <font face='Symbol'> &#8801; </font> ";
 	//This loop is just the result of a^k = a^w * a^x * ....
 	for ($i = 0; $i < count($kfactors); $i++){
 		echo "$kfactors[$i]";		//a^(kfactor)
@@ -100,5 +100,5 @@
 		if ($i < (count($kfactors) - 1)) echo " * ";
 	}
 	echo " mod $m";
-	echo "<br />$a<sup>$k</sup> mod $m <font face='Symbol'> &#186; </font> " . ($result % $m);
+	echo "<br />$a<sup>$k</sup> mod $m <font face='Symbol'> &#8801; </font> " . ($result % $m);
 ?>
